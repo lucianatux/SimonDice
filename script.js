@@ -13,6 +13,7 @@ let canClick = false;
 function startGame() {
     sequence = [];
     playerSequence = [];
+    document.getElementById("roundCounter").innerText = "1";
     document.getElementById("message").innerText = "Memoriza la secuencia";
     nextRound();
 }
@@ -21,6 +22,7 @@ function nextRound() {
     playerSequence = [];
     canClick = false;
     sequence.push(Math.floor(Math.random() * 4));
+    document.getElementById("roundCounter").innerText = sequence.length;
     showSequence(0);
 }
 
