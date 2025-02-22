@@ -26,21 +26,28 @@ function nextRound() {
     showSequence(0);
 }
 
+
 function showSequence(index) {
     if (index < sequence.length) {
         let color = colors[sequence[index]];
         let button = document.querySelector("." + color);
         playTone(frequencies[color]);
         button.classList.add("active");
+
+        // Ajustar velocidad a partir de la ronda 10
+        let speed = sequence.length >= 10 ? 400 : 800; 
+
         setTimeout(() => {
             button.classList.remove("active");
-            setTimeout(() => showSequence(index + 1), 500);
-        }, 800);
+            let pause = sequence.length >= 10 ? 200 : 400; 
+            setTimeout(() => showSequence(index + 1), pause);
+        }, speed);
     } else {
         canClick = true;
         document.getElementById("message").innerText = "Repite la secuencia";
     }
 }
+
 
 function playerClick(index) {
     if (!canClick) return;
